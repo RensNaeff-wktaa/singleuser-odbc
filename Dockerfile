@@ -14,7 +14,7 @@ RUN apt-get update \
         && apt-get install python-pip -y \
         && apt-get install gcc -y \
         && apt-get install g++ -y \
-        && apt-get install build-essential \
+        && apt-get install build-essential -y \
         && pip install pyodbc
 
 USER jovyan
