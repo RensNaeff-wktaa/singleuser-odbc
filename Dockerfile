@@ -1,6 +1,5 @@
 FROM jupyterhub/k8s-singleuser-sample:0.8.2
 
-# Install ODBC-driver 17
 USER root
 RUN apt-get update \
         && apt-get install -y curl apt-transport-https gnupg2 \
@@ -9,11 +8,13 @@ RUN apt-get update \
         && apt-get update \
         && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools \
         && apt-get install unixodbc-dev -y \
-        && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
-        && ln -s /opt/mssql-tools/bin/* /usr/local/bin/
-
-# Install pyodbc
-RUN apt-get install -y python python-pip gcc g++ build-essential \
-    && pip install pyodbc
+        ##&& echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
+        && ln -s /opt/mssql-tools/bin/* /usr/local/bin/ \
+        && apt-get install python -y \
+        && apt-get install python-pip -y \
+        && apt-get install gcc -y \
+        && apt-get install g++ -y \
+        && apt-get install build-essential \
+        && pip install pyodbc
 
 USER jovyan
