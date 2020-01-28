@@ -1,5 +1,3 @@
-FROM zerogjoe/mssql-python3.6-pyodbc:latest
-
 FROM jupyter/base-notebook:d4e60350af15
 # Built from... https://hub.docker.com/r/jupyter/base-notebook/
 #               https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
