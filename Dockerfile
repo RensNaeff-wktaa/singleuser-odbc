@@ -1,24 +1,19 @@
-FROM jupyter/base-notebook:d4e60350af15
-# Built from... https://hub.docker.com/r/jupyter/base-notebook/
-#               https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
-# Built from... Ubuntu 18.04
+FROM jupyterhub/k8s-singleuser-sample:0.8.2
 
-# The jupyter/docker-stacks images contains jupyterhub, jupyterlab and the
-# jupyterlab-hub extension already.
-
-# Example install of git and nbgitpuller.
-# NOTE: git is already available in the jupyter/minimal-notebook image.
+# Install ODBC-driver 17
 USER root
-RUN apt-get update && apt-get install --yes --no-install-recommends \
-    git \
- && rm -rf /var/lib/apt/lists/*
-USER $NB_USER
+RUN apt-get update \
+        && apt-get install -y curl apt-transport-https gnupg2 \
+        && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+        && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+        && apt-get update \
+        && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools \
+        && apt-get install unixodbc-dev -y \
+        && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
+        && ln -s /opt/mssql-tools/bin/* /usr/local/bin/
 
-RUN pip install --upgrade jupyterhub && \
-    pip install nbgitpuller && \
-    jupyter serverextension enable --py nbgitpuller --sys-prefix
+# Install pyodbc
+RUN apt-get install -y python python-pip gcc g++ build-essential \
+    && pip install pyodbc
 
-# Uncomment the line below to make nbgitpuller default to start up in JupyterLab
-#ENV NBGITPULLER_APP=lab
-
-# conda/pip/apt install additional packages here, if desired.
+USER jovyan
