@@ -1,4 +1,4 @@
-FROM jupyterhub/k8s-singleuser-sample:1.2.1
+FROM jupyterhub/k8s-singleuser-sample:0.10.4
 
 USER root
 RUN apt-get update \
