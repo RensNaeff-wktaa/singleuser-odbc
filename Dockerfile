@@ -1,4 +1,4 @@
-FROM jupyterhub/k8s-singleuser-sample:0.8.2
+FROM jupyterhub/k8s-singleuser-sample:1.1.*
 
 USER root
 RUN apt-get update \
@@ -15,6 +15,7 @@ RUN apt-get update \
         && apt-get install gcc -y \
         && apt-get install g++ -y \
         && apt-get install build-essential -y \
-        && pip install pyodbc
+        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml
+        && pip install cryptography --upgrade 
 
 USER jovyan
