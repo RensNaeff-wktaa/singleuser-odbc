@@ -15,7 +15,7 @@ RUN apt-get update \
         && apt-get install gcc -y \
         && apt-get install g++ -y \
         && apt-get install build-essential -y \
-        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml
+        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml \
         && pip install cryptography --upgrade 
 
 USER jovyan
