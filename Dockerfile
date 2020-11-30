@@ -8,16 +8,10 @@ RUN apt-get update \
         && apt-get update \
         && wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/multiarch-support_2.27-3ubuntu1.3_amd64.deb \
         && apt-get install ./multiarch-support_2.27-3ubuntu1.3_amd64.deb -y \
-        ##&& apt-get install unixodbc odbcinst1debian2 multiarch-support libodbc1 -y \
-        && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools \
-        && apt-get install unixodbc-dev -y \
-        ##&& echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile \
+        && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev \
         && ln -s /opt/mssql-tools/bin/* /usr/local/bin/ \
-        && apt-get install python3 -y \
-        && apt-get install python3-pip -y \
-        && apt-get install gcc -y \
-        && apt-get install g++ -y \
-        && apt-get install build-essential -y \
-        && pip install pyodbc
+        && apt-get install python3 python3-pip gcc g++ build-essential -y \
+        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml \
+        && pip install cryptography --upgrade
 
 USER jovyan
