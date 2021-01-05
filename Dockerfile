@@ -11,7 +11,7 @@ RUN apt-get update \
         && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev \
         && ln -s /opt/mssql-tools/bin/* /usr/local/bin/ \
         && apt-get install python3 python3-pip gcc g++ build-essential -y \
-        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml \
+        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml jupyterlab-git \
         && pip install cryptography --upgrade
 
 USER jovyan
