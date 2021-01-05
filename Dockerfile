@@ -6,7 +6,7 @@ RUN apt-get update \
         && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
         && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
         && apt-get update \
-        && wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/multiarch-support_2.27-3ubuntu1.3_amd64.deb \
+        && wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/multiarch-support_2.27-3ubuntu1.4_amd64.deb \
         && apt-get install ./multiarch-support_2.27-3ubuntu1.3_amd64.deb -y \
         && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev \
         && ln -s /opt/mssql-tools/bin/* /usr/local/bin/ \
