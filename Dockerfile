@@ -14,10 +14,8 @@ RUN apt-get update \
         && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml \
         && pip install cryptography --upgrade
         
-RUN pip install -Iv jupyterlab-git==0.23.2 nbgitpuller==0.9.0 ipywidgets==7.5.1
-RUN echo "c.NotebookApp.terminals_enabled = False" >> /etc/jupyter/jupyter_notebook_config.py
+RUN pip install -Iv jupyterlab-git==0.23.2
 RUN jupyter lab build
 RUN jupyter serverextension enable --sys-prefix jupyterlab-git
-RUN jupyter labextension install jupyterlab-plotly@4.13.0
 
 USER jovyan
