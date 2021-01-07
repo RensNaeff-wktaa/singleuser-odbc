@@ -15,6 +15,7 @@ RUN apt-get update \
         && pip install cryptography --upgrade
         
 RUN pip install -Iv jupyterlab-git==0.23.2
+RUN pip install -Iv nbgitpuller==0.9.0
 RUN jupyter lab build
 RUN jupyter serverextension enable --sys-prefix jupyterlab-git
 
