@@ -11,13 +11,17 @@ RUN apt-get update \
         && ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev \
         && ln -s /opt/mssql-tools/bin/* /usr/local/bin/ \
         && apt-get install python3 python3-pip gcc g++ build-essential -y \
-        && pip install pyodbc pandas psycopg2-binary simple-salesforce openpyxl pyyaml \
+        && pip install pyodbc \
+        && pip install pandas \
+        && pip install psycopg2-binary \
+        && pip install simple-salesforce \
+        && pip install openpyxl \
+        && pip install pyyaml \
         && pip install cryptography --upgrade
         
-RUN pip install -Iv jupyterlab-git==0.23.2
-RUN pip install -Iv nbgitpuller==0.9.0
-RUN jupyter lab build
-RUN jupyter serverextension enable --py jupyterlab_git --sys-prefix
-RUN chmod 777 /home/jovyan
+RUN pip install -Iv jupyterlab-git==0.23.2 \
+        && pip install -Iv nbgitpuller==0.9.0 \
+        && jupyter lab build \
+        && jupyter serverextension enable --py jupyterlab_git --sys-prefix
 
 USER jovyan
