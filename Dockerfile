@@ -17,6 +17,7 @@ RUN apt-get update \
 RUN pip install -Iv jupyterlab-git==0.23.2
 RUN pip install -Iv nbgitpuller==0.9.0
 RUN jupyter lab build
-RUN jupyter serverextension enable --sys-prefix jupyterlab-git
+##RUN jupyter serverextension enable --sys-prefix jupyterlab-git
+RUN jupyter serverextension enable --py jupyterlab_git
 
 USER jovyan
